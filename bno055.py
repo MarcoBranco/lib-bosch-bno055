@@ -420,3 +420,11 @@ ndof       NDOF         Yes       Yes        Yes        Yes
         xx = self._read_vector(BNO055_EULER_H_LSB_ADDR)
         hrp = [ i/16 for i in xx ]
         return hrp
+    
+    def get_linear_acceleration(self):
+        """Return the current linear acceleration (acceleration from movement,
+        not from gravity) reading as a tuple of X, Y, Z values in meters/second^2.
+        """
+        x, y, z = self._read_vector(BNO055_LINEAR_ACCEL_DATA_X_LSB_ADDR)
+        return (x/100.0, y/100.0, z/100.0)
+    
